@@ -1,5 +1,6 @@
 package fairfinance.pocketpartners.backend.shared.infrastructure.documentation.openapi.configuration;
 
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -7,6 +8,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,7 +27,8 @@ public class OpenApiConfiguration {
                                 .url("https://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                         .description("FairFinance Pocket Partners wiki Documentation")
-                        .url("https://github.com/PocketPartners/Informe"));
+                        .url("https://github.com/PocketPartners/Informe"))
+                .addServersItem(new Server().url("https://pocket-partners-backend-production.up.railway.app"));
 
         final String securitySchemeName = "bearerAuth";
 
