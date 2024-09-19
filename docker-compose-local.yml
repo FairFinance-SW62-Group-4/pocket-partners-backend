@@ -1,8 +1,0 @@
-services:
-  learning-center-platform:
-    image: fairfinance/pocketpartners
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 8080:8080
