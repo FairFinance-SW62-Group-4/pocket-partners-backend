@@ -28,7 +28,9 @@ public class OpenApiConfiguration {
                 .externalDocs(new ExternalDocumentation()
                         .description("FairFinance Pocket Partners wiki Documentation")
                         .url("https://github.com/PocketPartners/Informe"))
-                .addServersItem(new Server().url("https://pocket-partners-backend-production.up.railway.app"));
+                .addServersItem(new Server().url("https://pocket-partners-backend-production.up.railway.app"))
+                .addServersItem(new Server().url("http://localhost:8080"));
+
 
         final String securitySchemeName = "bearerAuth";
 
