@@ -31,6 +31,7 @@ public class OpenApiConfiguration {
                 .addServersItem(new Server().url("https://pocket-partners-backend-production.up.railway.app"))
                 .addServersItem(new Server().url("http://localhost:8080"));
 
+
         final String securitySchemeName = "bearerAuth";
 
         openApi.addSecurityItem(new SecurityRequirement()
