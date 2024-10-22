@@ -14,13 +14,12 @@ public class UserFriendsListQueryServiceImpl implements UserFriendsListQueryServ
 
     private final UserFriendsListRepository friendsListRepository;
 
-    @Autowired
     public UserFriendsListQueryServiceImpl(UserFriendsListRepository friendsListRepository) {
         this.friendsListRepository = friendsListRepository;
     }
 
     @Override
     public Optional<UserFriendsList> handle(GetUserFriendsListByUserIdQuery query) {
-        return friendsListRepository.findById(query.id());
+        return friendsListRepository.findByUserId(query.id());
     }
 }

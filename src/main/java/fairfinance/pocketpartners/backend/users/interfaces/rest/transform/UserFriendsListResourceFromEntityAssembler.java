@@ -7,6 +7,6 @@ import java.util.List;
 
 public class UserFriendsListResourceFromEntityAssembler {
     public static UserFriendsListResource toResourceFromEntity(UserFriendsList userFriendsList) {
-        return new UserFriendsListResource(userFriendsList.getUser().getId(), List.copyOf(userFriendsList.getFriends()));
+        return new UserFriendsListResource(userFriendsList.getId(), userFriendsList.getUser().getId(), List.copyOf(userFriendsList.getFriends()));
     }
 }
