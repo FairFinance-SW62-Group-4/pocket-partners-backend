@@ -7,9 +7,11 @@ import fairfinance.pocketpartners.backend.users.domain.services.UserFriendsListC
 import fairfinance.pocketpartners.backend.users.domain.services.UserFriendsListQueryService;
 import fairfinance.pocketpartners.backend.users.interfaces.rest.resources.AddFriendResource;
 import fairfinance.pocketpartners.backend.users.interfaces.rest.resources.CreateUserFriendsListResource;
+import fairfinance.pocketpartners.backend.users.interfaces.rest.resources.UpdateUserFriendsListResource;
 import fairfinance.pocketpartners.backend.users.interfaces.rest.resources.UserFriendsListResource;
 import fairfinance.pocketpartners.backend.users.interfaces.rest.transform.AddFriendCommandFromResourceAssembler;
 import fairfinance.pocketpartners.backend.users.interfaces.rest.transform.CreateUserFriendsListCommandFromResourceAssembler;
+import fairfinance.pocketpartners.backend.users.interfaces.rest.transform.UpdateUserFriendsListCommandFromResourceAssembler;
 import fairfinance.pocketpartners.backend.users.interfaces.rest.transform.UserFriendsListResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -97,5 +99,20 @@ public class UserFriendsListController {
         var friendsListDeleted = userFriendsListCommandService.handle(deleteFriendsListCommand);
         if (friendsListDeleted.isEmpty()) return ResponseEntity.notFound().build();
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Update a user friends list by User ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User friends list updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "404", description = "User friends list not found")
+    })
+    @PutMapping("/userId/{userId}")
+    public ResponseEntity<UserFriendsListResource> updateUserFriendsList(@PathVariable Long userId, @RequestBody UpdateUserFriendsListResource resource) {
+        var updateUserFriendsListCommand = UpdateUserFriendsListCommandFromResourceAssembler.toCommandFromResource(userId, resource);
+        var updatedFriendsList = userFriendsListCommandService.handle(updateUserFriendsListCommand);
+        if (updatedFriendsList.isEmpty()) return ResponseEntity.notFound().build();
+        var friendsListResource = UserFriendsListResourceFromEntityAssembler.toResourceFromEntity(updatedFriendsList.get());
+        return ResponseEntity.ok(friendsListResource);
     }
 }

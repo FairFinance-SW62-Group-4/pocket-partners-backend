@@ -4,6 +4,7 @@ import fairfinance.pocketpartners.backend.users.domain.model.aggregates.UserFrie
 import fairfinance.pocketpartners.backend.users.domain.model.commands.AddFriendCommand;
 import fairfinance.pocketpartners.backend.users.domain.model.commands.CreateUserFriendsListCommand;
 import fairfinance.pocketpartners.backend.users.domain.model.commands.DeleteUserFriendsListCommand;
+import fairfinance.pocketpartners.backend.users.domain.model.commands.UpdateUserFriendsListCommand;
 
 import java.util.Optional;
 
@@ -14,4 +15,6 @@ public interface UserFriendsListCommandService {
     Optional<UserFriendsList> handle(DeleteUserFriendsListCommand command);
 
     Optional<UserFriendsList> handle(AddFriendCommand command);
+
+    Optional<UserFriendsList> handle(UpdateUserFriendsListCommand command);
 }
